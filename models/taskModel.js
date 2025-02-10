@@ -13,8 +13,11 @@ const taskSchema = mongoose.Schema({
         type: Date,
         required: true,
     },
+    status: { 
+        type: String, enum: ['todo', 'in-progress', 'done'],
+        default: 'todo' },
     priority: {
-        type: Number,
+        type: String, enum: ['low', 'medium', 'high'],
         required: true,
     },
     completed: {
@@ -26,4 +29,8 @@ const taskSchema = mongoose.Schema({
         default: Date.now,
     },
 })
+
+const Task = mongoose.model("Task", taskSchema);
+
+export default Task;
 
