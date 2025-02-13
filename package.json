@@ -5,7 +5,9 @@
   "main": "front.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",  
+    "start": "node --watch --env-file=.env server"
+
   },
   "keywords": [],
   "author": "",
