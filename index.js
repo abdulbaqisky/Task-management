@@ -1,16 +1,13 @@
 import express from 'express';
 import path from 'path';
-import connectDB from './db.js';
-
 
 
 const __dirname = path.resolve();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-connectDB();
-console.log('Hello World');
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
