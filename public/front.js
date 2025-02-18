@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Add Task
-    taskForm.addEventListener("submit", (e)  => {
+    taskForm.addEventListener("submit", async(e)  => {
         e.preventDefault();
 
         const newTask = {
@@ -42,6 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
             completed: false,
             created: new Date().toISOString()
         };
+
+        await fetch(`http://localhost:${process.env.PORT}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTask)
+        });
 
         //newTask.save();
 
