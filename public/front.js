@@ -43,16 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             created: new Date().toISOString()
         };
 
-        await fetch(`http://localhost:${process.env.PORT}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newTask)
-        });
-
-        //newTask.save();
-
         tasks.push(newTask);
         taskForm.reset();
         renderTasks();
