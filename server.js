@@ -12,6 +12,8 @@ connectDB();
 console.log('Hello World');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -39,27 +41,6 @@ app.post('/', async (req, res) => {
     
 }                   
 );
-
-// app.post('/', async (req, res) => { 
-//     try {
-//         const newTask = new Task(req.body); // Create new task from request body
-//         await newTask.save(); // Save to MongoDB
-//         res.status(201).json(newTask); // Respond with the saved task
-//     } catch (error) {
-//         res.status(400).json({ error: "Failed to add task" });
-//     }
-// });
-
-app.post("/", async (req, res) => {
-    try {
-        const newTask = new Task(req.body); // Create new task from request body
-        await newTask.save(); // Save to MongoDB
-        res.status(201).json(newTask); // Respond with the saved task
-    } catch (error) {
-        res.status(400).json({ error: "Failed to add task" });
-    }
-});
-
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
     });
