@@ -28,7 +28,7 @@ app.post('/', async (req, res) => {
             status: req.body.status,
             priority: req.body.priority,
             completed: false,
-            created: new Date().toISOString()
+            created: new Date()
         });
         console.log(newTask);
         await newTask.save();

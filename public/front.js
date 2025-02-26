@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             status: document.getElementById("status").value,
             priority: document.getElementById("priority").value,
             completed: false,
-            created: new Date().toISOString()
+            created: new Date()
         };
 
         tasks.push(newTask);
