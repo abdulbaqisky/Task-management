@@ -19,19 +19,21 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.get('/tasks', async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.json(tasks);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch tasks" });
+    }
+});
+
 app.post('/', async (req, res) => {
     try {
-        const newTask = new Task({
-            title: req.body.title,
-            description: req.body.description,
-            deadline: req.body.deadline,
-            status: req.body.status,
-            priority: req.body.priority,
-            completed: false,
-            created: new Date()
-        });
+        const newTask = await Task.create(req.body);
+        res.status(201).json({ message: "Task added" });
         console.log(newTask);
-        await newTask.save();
         res.status(201).json(newTask);
     } catch (error) {
         console.error(error);
