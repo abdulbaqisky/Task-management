@@ -9,8 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 connectDB();
-console.log('Hello World');
 
+// middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
@@ -30,18 +30,18 @@ app.get('/tasks', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
+    const { title, description, deadline, status, priority, completed, created } = req.body;
+    
     try {
+        console.log(req.body);
         const newTask = await Task.create(req.body);
-        res.status(201).json({ message: "Task added" });
         console.log(newTask);
         res.status(201).json(newTask);
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Failed to add task" });
     } 
-    
-    
-}                   
+    }                   
 );
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);

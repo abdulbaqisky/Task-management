@@ -46,6 +46,22 @@ document.addEventListener("DOMContentLoaded", () => {
         tasks.push(newTask);
         taskForm.reset();
         renderTasks();
+        fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newTask),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        
+
     });
 
     // Delete Task
