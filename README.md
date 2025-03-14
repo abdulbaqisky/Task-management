@@ -1,3 +1,3 @@
 "# Task-management" 
 
-bug filled
+bug cleared
